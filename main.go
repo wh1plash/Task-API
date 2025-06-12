@@ -34,14 +34,14 @@ func main() {
 
 	gin.SetMode(gin.DebugMode)
 	app := gin.Default()
-	tastHandler := api.NewTaskHandler(db)
-	app.POST("/tasks", tastHandler.HandlePostTask)
-	app.GET("/tasks", tastHandler.HandleGetTasks)
-	app.GET("/tasks/:id", tastHandler.HandleGetTask)
-	app.PUT("/tasks/:id", tastHandler.HandlePutTask)
-	app.DELETE("/tasks/:id", tastHandler.HandleDeleteTask)
+	taskHandler := api.NewTaskHandler(db)
+	app.POST("/tasks", taskHandler.HandlePostTask)
+	app.GET("/tasks", taskHandler.HandleGetTasks)
+	app.GET("/tasks/:id", taskHandler.HandleGetTask)
+	app.PUT("/tasks/:id", taskHandler.HandlePutTask)
+	app.DELETE("/tasks/:id", taskHandler.HandleDeleteTask)
 
-	log.Fatal("Error to star HTTP server", app.Run(os.Getenv("LISTENADDR")))
+	log.Fatal("Error to start HTTP server", app.Run(os.Getenv("LISTENADDR")))
 
 }
 
