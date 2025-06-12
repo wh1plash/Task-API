@@ -12,14 +12,10 @@ import (
 
 type TaskStore interface {
 	InsertTask(context.Context, *types.Task) (*types.Task, error)
-	GetTasks(context.Context) ([]*types.Task, error)
+	GetTasks(ctx context.Context, offset, limit int, status string) ([]*types.Task, error)
 	GetTask(context.Context, string) (*types.Task, error)
 	UpdateTask(context.Context, string, *types.TaskParams) (*types.Task, error)
 	DeleteTask(ctx context.Context, id string) (int, error)
-	// DeleteTask(context.Context, int) (int, error)
-	// GetTasks(context.Context) ([]*types.Task, error)
-	// GetTaskByID(context.Context, int) (*types.Task, error)
-	// UpdateTask(context.Context, int, map[string]any) (types.Task, error)
 }
 
 type PostgresStore struct {
@@ -89,8 +85,14 @@ func (p *PostgresStore) GetTask(ctx context.Context, id string) (*types.Task, er
 	return task, nil
 }
 
-func (p *PostgresStore) GetTasks(ctx context.Context) ([]*types.Task, error) {
-	rows, err := p.db.QueryContext(ctx, "select * from tasks")
+func (p *PostgresStore) GetTasks(ctx context.Context, offset, limit int, status string) ([]*types.Task, error) {
+	rows, err := p.db.QueryContext(ctx, `
+	SELECT id, title, description, status, created_at, updated_at
+	FROM tasks
+	WHERE ($1 = '' OR status = $1)
+	ORDER BY created_at DESC
+	LIMIT $2 OFFSET $3
+	`, status, limit, offset)
 	if err != nil {
 		return nil, err
 	}
