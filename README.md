@@ -9,7 +9,7 @@ Before run application you must create .env file in root directory and set param
 ### Example of .env file
 ```
 PG_HOST="db"
-PG_PORT=5432
+PG_PORT=5433
 PG_USER="postgres"
 PG_PASS="postgres"
 PG_DB_NAME="Task_CRUD"
