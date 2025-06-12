@@ -90,7 +90,7 @@ func (p *PostgresStore) GetTasks(ctx context.Context, offset, limit int, status 
 	SELECT id, title, description, status, created_at, updated_at
 	FROM tasks
 	WHERE ($1 = '' OR status = $1)
-	ORDER BY created_at DESC
+	ORDER BY id ASC
 	LIMIT $2 OFFSET $3
 	`, status, limit, offset)
 	if err != nil {

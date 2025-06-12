@@ -7,4 +7,7 @@ run: build
 docker: build
 	@docker	compose up --build -d
 
+seed:
+	@go run scripts/seed.go
+
 .PHONY: build	

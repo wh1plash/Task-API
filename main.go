@@ -17,11 +17,13 @@ func init() {
 }
 
 func main() {
-	port, _ := strconv.Atoi(os.Getenv("PG_PORT"))
-	connStr := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", os.Getenv("PG_HOST"), port, os.Getenv("PG_USER"), os.Getenv("PG_PASS"), os.Getenv("PG_DB_NAME"))
+	var (
+		port, _ = strconv.Atoi(os.Getenv("PG_PORT"))
+		connStr = fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", os.Getenv("PG_HOST"), port, os.Getenv("PG_USER"), os.Getenv("PG_PASS"), os.Getenv("PG_DB_NAME"))
+	)
 	db, err := store.NewPostgresStore(connStr)
 	if err != nil {
-		log.Fatal("error to connect to Posgres database", "error", err.Error())
+		log.Fatal("error to connect to Posgres database: ", err.Error())
 		return
 	}
 
@@ -38,9 +40,6 @@ func main() {
 	app.GET("/tasks/:id", tastHandler.HandleGetTask)
 	app.PUT("/tasks/:id", tastHandler.HandlePutTask)
 	app.DELETE("/tasks/:id", tastHandler.HandleDeleteTask)
-	// app.GET("/validate", middleware.RequireAuth, controllers.Validate)
-	// app.POST("/upload", middleware.RequireAuth, controllers.UploadHandler)
-	// app.POST("/upload/csv", middleware.RequireAuth, controllers.UploadAndConcert)
 
 	log.Fatal("Error to star HTTP server", app.Run(os.Getenv("LISTENADDR")))
 
