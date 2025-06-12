@@ -20,18 +20,32 @@ Make sure you Postgres instance up and running before start application
 
 ### Use commands from Makefile to run application.
 run with docker-compose
+Linux
 ```
 make docker
 ```
+Windows
+```
+docker compose up --build -d
+```
 run app locally
+Linux
 ```
 make run
 ```
+Windows
+```
+go run main.go
+```
 run seed for add 20 Tasks with random status
+Linux
 ```
 make seed
 ```
-
+Windows
+```
+go run scripts/seed.go
+```
 ## Add Task example JSON body
 POST http://localhost:3000/tasks
 ```
