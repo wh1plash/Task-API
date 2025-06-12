@@ -61,5 +61,5 @@ GET http://localhost:3000/tasks?page=1&page_size=150&status=open
 status list:
 	"open",
 	"in_progress",
-	"done",
+	"done"
 ```
