@@ -15,11 +15,11 @@ PG_PASS="postgres"
 PG_DB_NAME="Task_CRUD"
 LISTENADDR="0.0.0.0:3000"
 ```
-Set __PG_HOST="db"__ if you vant to run application in Docker with docker-compose or __PG_HOST="localhost"__ if you vant to run locally.
+Set __PG_HOST="db"__ if you vant to run application in Docker with docker-compose or __PG_HOST="localhost"__ if you vant to run locally.  
 Make sure you Postgres instance up and running before start application
 
 ### Use commands from Makefile to run application.
-run with docker-compose
+run with docker-compose.  
 Linux
 ```
 make docker
@@ -28,7 +28,7 @@ Windows
 ```
 docker compose up --build -d
 ```
-run app locally
+run app locally.  
 Linux
 ```
 make run
@@ -37,7 +37,7 @@ Windows
 ```
 go run main.go
 ```
-run seed for add 20 Tasks with random status
+run seed for add 20 Tasks with random status.  
 Linux
 ```
 make seed
