@@ -4,7 +4,7 @@
 Implement an HTTP server in Go that provides CRUD operations on the Task entity. The goal is to test knowledge of Go (modules, packages, mutex, interfaces), ability to work with HTTP, JSON. Implementation of HTTP requests should be implemented through the Gin package.
 The full description of the task is contained in "tz.pdf"
 
-Before run application you must set parameters in the .env file in root directory.
+Before run application you must create .env file in root directory and set parameters
 
 ### Example of .env file
 ```
@@ -15,7 +15,8 @@ PG_PASS="postgres"
 PG_DB_NAME="Task_CRUD"
 LISTENADDR="0.0.0.0:3000"
 ```
-Set __PG_HOST="db"__ if you vant to run application in Docker with docker-compose or __PG_HOST="localhost"__ if you vant to run application locally.
+Set __PG_HOST="db"__ if you vant to run application in Docker with docker-compose or __PG_HOST="localhost"__ if you vant to run locally.
+Make sure you Postgres instance up and running before start application
 
 ### Use commands from Makefile to run application.
 run with docker-compose
